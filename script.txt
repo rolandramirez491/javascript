@@ -1,0 +1,88 @@
+// Variables let
+let num1 = 0;
+let num2 = 0;
+let sumResult = 0;
+let subResult = 0;
+let mulResult = 0;
+let divResult = 0;
+let isPositiveSum = true;
+let isPositiveSub = true;
+let isPositiveMul = true;
+let isPositiveDiv = true;
+let message = "";
+
+// Variables const
+const input1 = document.getElementById('input1');
+const input2 = document.getElementById('input2');
+const sumButton = document.getElementById('sum-btn');
+const subButton = document.getElementById('sub-btn');
+const mulButton = document.getElementById('mul-btn');
+const divButton = document.getElementById('div-btn');
+
+// Función para actualizar los valores de las entradas
+function updateValues() {
+    num1 = parseFloat(input1.value);
+    num2 = parseFloat(input2.value);
+}
+
+// Operaciones básicas
+function sum() {
+    updateValues();
+    sumResult = num1 + num2;
+    isPositiveSum = sumResult >= 0 ? true : false; // Operador ternario
+    message = `La suma es: ${sumResult}`;
+    alert(message);
+}
+
+function subtract() {
+    updateValues();
+    subResult = num1 - num2;
+    isPositiveSub = subResult >= 0 ? true : false; // Operador ternario
+    message = `La resta es: ${subResult}`;
+    alert(message);
+}
+
+function multiply() {
+    updateValues();
+    mulResult = num1 * num2;
+    isPositiveMul = mulResult >= 0 ? true : false; // Operador ternario
+    message = `La multiplicación es: ${mulResult}`;
+    alert(message);
+}
+
+function divide() {
+    updateValues();
+    divResult = num1 / num2;
+    isPositiveDiv = divResult >= 0 ? true : false; // Operador ternario
+    message = divResult === Infinity ? "División por cero" : `La división es: ${divResult}`;
+    alert(message);
+}
+
+// Función para aplicar el movimiento aleatorio a los botones
+function moveRandomly(element) {
+    element.style.position = 'absolute';
+    setInterval(() => {
+        const x = Math.random() * window.innerWidth;
+        const y = Math.random() * window.innerHeight;
+        element.style.left = `${x}px`;
+        element.style.top = `${y}px`;
+    }, 3000); // Se mueve cada 3 segundos
+}
+
+// Aplicar movimiento aleatorio a los botones
+moveRandomly(sumButton);
+moveRandomly(subButton);
+moveRandomly(mulButton);
+moveRandomly(divButton);
+
+// Asignar los colores a los botones
+sumButton.style.backgroundColor = 'green';
+subButton.style.backgroundColor = 'red';
+mulButton.style.backgroundColor = 'violet';
+divButton.style.backgroundColor = 'red';
+
+// Agregar los eventos click a los botones
+sumButton.addEventListener('click', sum);
+subButton.addEventListener('click', subtract);
+mulButton.addEventListener('click', multiply);
+divButton.addEventListener('click', divide);
